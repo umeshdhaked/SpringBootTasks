@@ -16,7 +16,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-@Profile("real")
+//@Profile("real")
 public class MusicTrackServiceImpl implements MusicTrackService {
 
     TrackRepo trackRepo;
