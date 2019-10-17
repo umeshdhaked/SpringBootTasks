@@ -1,12 +1,13 @@
 package com.stackroute.muzix.exception;
 
 public class TrackAlreadyExistsException extends Exception {
-    private String string;
+    private String message;
+
     public TrackAlreadyExistsException() {
     }
 
     public TrackAlreadyExistsException(String message) {
         super(message);
-        this.string = message;
+        this.message = message;
     }
 }
