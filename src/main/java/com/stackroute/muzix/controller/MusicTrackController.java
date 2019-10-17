@@ -54,7 +54,7 @@ public class MusicTrackController {
     private ResponseEntity<?> deleteTrack(@RequestBody Track track) {
         ResponseEntity responseEntity;
         try {
-            responseEntity = new ResponseEntity<String >(musicTrackService.removeTrack(track.getTrackId()) +"Is deleted" , HttpStatus.OK);
+            responseEntity = new ResponseEntity<String>(musicTrackService.removeTrack(track.getTrackId()) + "Is deleted", HttpStatus.OK);
         } catch (Exception ex) {
             responseEntity = new ResponseEntity<String>(ex.getMessage(), HttpStatus.OK);
         }
