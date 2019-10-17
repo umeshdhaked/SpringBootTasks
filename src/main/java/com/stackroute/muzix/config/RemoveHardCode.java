@@ -12,26 +12,28 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@Configuration
-@PropertySource(value = "classpath:data.properties")
-public class RemoveHardCode {
-    @Value("${track.id}")
-    public int id;
+// This Piece of Code is not working
 
-    @Value("${track.name}")
-    public String name;
-
-    @Value("${track.comment}")
-    public String comment;
-
-    @Bean
-    public PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer(){
-        return new PropertySourcesPlaceholderConfigurer();
-    }
-
-    @Bean
-    public void Print(){
-        System.out.println(name);
-    }
-
-}
+//@Configuration
+//@PropertySource(value = "classpath:data.properties")
+//public class RemoveHardCode {
+//    @Value("${track.id}")
+//    public int id;
+//
+//    @Value("${track.name}")
+//    public String name;
+//
+//    @Value("${track.comment}")
+//    public String comment;
+//
+//    @Bean
+//    public PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer(){
+//        return new PropertySourcesPlaceholderConfigurer();
+//    }
+//
+//    @Bean
+//    public void Print(){
+//        System.out.println(name);
+//    }
+//
+//}

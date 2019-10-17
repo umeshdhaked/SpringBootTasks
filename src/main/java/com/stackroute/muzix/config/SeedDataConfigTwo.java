@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-@Component
-public class SeedDataConfigTwo implements CommandLineRunner {
-    @Autowired
-    private TrackRepo trackRepo;
-
-    @Override
-    public void run(String... args) throws Exception {
-      trackRepo.save(new Track(100,"lol","lol"));
-    }
-}
+//@Component
+//public class SeedDataConfigTwo implements CommandLineRunner {
+//    @Autowired
+//    private TrackRepo trackRepo;
+//
+//    @Override
+//    public void run(String... args) throws Exception {
+//      trackRepo.save(new Track(100,"lol","lol"));
+//    }
+//}

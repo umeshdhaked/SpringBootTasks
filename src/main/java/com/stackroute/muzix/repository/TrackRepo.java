@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface TrackRepo extends JpaRepository<Track, Integer> {
 
-    @Query(value = "SELECT * FROM TRACK WHERE TRACK_NAME=?1", nativeQuery = true)
+    @Query(value = "SELECT * FROM track WHERE track_name=?1", nativeQuery = true)
         //nativeQuery is for SQL only Query
     List<Track> getTrackByName(String string);
 
