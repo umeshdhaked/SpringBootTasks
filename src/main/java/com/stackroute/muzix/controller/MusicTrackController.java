@@ -9,7 +9,6 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -63,15 +62,12 @@ public class MusicTrackController {
 
     @ApiOperation(value = "Finding Track Detail by Name")
     @GetMapping("byName")
-    private ResponseEntity<?> trackByName(@RequestBody Track track) {
+    private ResponseEntity<?> trackByName(@RequestBody Track track) throws TrackNotFoundException {
         ResponseEntity responseEntity;
-        try {
-            responseEntity = new ResponseEntity<List<Track>>(musicTrackService.trackByName(track.getTrackName()), HttpStatus.OK);
-        } catch (Exception ex) {
-            responseEntity = new ResponseEntity<String>(ex.getMessage(), HttpStatus.BAD_REQUEST);
-        }
 
-        return responseEntity;
+            responseEntity = new ResponseEntity<List<Track>>(musicTrackService.trackByName(track.getTrackName()), HttpStatus.OK);
+
+      return responseEntity;
     }
 
 
