@@ -1,5 +1,7 @@
 package com.stackroute.muzix.controller;
 
+import com.stackroute.muzix.exception.TrackAlreadyExistsException;
+import com.stackroute.muzix.exception.TrackNotFoundException;
 import com.stackroute.muzix.model.Track;
 import com.stackroute.muzix.service.MusicTrackService;
 import io.swagger.annotations.Api;
@@ -11,8 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
-@Controller
+@RestController
 @RequestMapping("tracks")
 @Api("Track CRUD Operation API")
 public class MusicTrackController {
@@ -25,52 +26,38 @@ public class MusicTrackController {
 
     @ApiOperation(value = "Saving Track Detail")
     @PostMapping("track")
-    public ResponseEntity<?> saveTrack(@RequestBody Track track) {
+    public ResponseEntity<?> saveTrack(@RequestBody Track track) throws TrackAlreadyExistsException {
         ResponseEntity responseEntity;
-        try {
             musicTrackService.saveTrack(track);
             responseEntity = new ResponseEntity<String>("Successful Created", HttpStatus.OK);
-        } catch (Exception ex) {
-            responseEntity = new ResponseEntity<String>(ex.getMessage(), HttpStatus.ALREADY_REPORTED);
-        }
-
         //response.sendRedirect("/index.html");
         return responseEntity;
     }
 
     @ApiOperation(value = "Reading Tracks Detail")
     @GetMapping("track")
-    private ResponseEntity<?> displayAllTrack() {
-        try {
+    private ResponseEntity<?> displayAllTrack() throws TrackNotFoundException {
+
             return new ResponseEntity<List<Track>>(musicTrackService.getAllTrack(), HttpStatus.OK);
-        } catch (Exception ex) {
-            return new ResponseEntity<String>(ex.getMessage(), HttpStatus.CONFLICT);
-        }
 
     }
 
     @ApiOperation(value = "Deleting Track")
     @DeleteMapping("track")
-    private ResponseEntity<?> deleteTrack(@RequestBody Track track) {
+    private ResponseEntity<?> deleteTrack(@RequestBody Track track) throws TrackNotFoundException {
         ResponseEntity responseEntity;
-        try {
+
             responseEntity = new ResponseEntity<String>(musicTrackService.removeTrack(track.getTrackId()) + "Is deleted", HttpStatus.OK);
-        } catch (Exception ex) {
-            responseEntity = new ResponseEntity<String>(ex.getMessage(), HttpStatus.OK);
-        }
         return responseEntity;
     }
 
     @ApiOperation(value = "Updating Track Comment")
     @PutMapping("track")
-    private ResponseEntity<?> updateTrackComment(@RequestBody Track track) {
+    private ResponseEntity<?> updateTrackComment(@RequestBody Track track) throws TrackNotFoundException {
         ResponseEntity responseEntity;
-        try {
+
             musicTrackService.updateTrackComment(track);
             responseEntity = new ResponseEntity<List<Track>>(musicTrackService.getAllTrack(), HttpStatus.OK);
-        } catch (Exception ex) {
-            responseEntity = new ResponseEntity<String>(ex.getMessage(), HttpStatus.CONFLICT);
-        }
         return responseEntity;
     }
 

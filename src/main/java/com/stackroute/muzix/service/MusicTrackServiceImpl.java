@@ -7,6 +7,8 @@ import com.stackroute.muzix.repository.TrackRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import javax.annotation.Resource;
 import java.util.List;
