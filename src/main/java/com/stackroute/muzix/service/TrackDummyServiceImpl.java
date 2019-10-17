@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@Primary // This will have highest priorities other than Qualifier
+@Profile("dummy")
 public class TrackDummyServiceImpl implements MusicTrackService {
     @Override
     public Track saveTrack(Track track) throws TrackAlreadyExistsException {

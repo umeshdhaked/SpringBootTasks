@@ -1,3 +1,5 @@
+** For task 11 we have to set profilename to IDE to run the project
+
 Tasks to be Done Post Demo
 1. Complete all the endpoints for CRUD operations on Muzix
 2. Use h2-console to view in-memory data
@@ -29,7 +31,7 @@ Environment.html)
 10. Create another service implementation TrackDummyServiceImpl. Use @Primary and
 @Qualifier annotations to specify which implementation to use.
 
-11. Use @Profile to run the application with the existing service implementation, and the new
+**11. Use @Profile to run the application with the existing service implementation, and the new
 TrackDummyServiceImpl implementation.
 
 12. Swap in-memory H2 database with MySQL.

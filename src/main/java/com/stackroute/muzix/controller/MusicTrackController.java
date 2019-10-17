@@ -10,12 +10,14 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 
 @ControllerAdvice
 @RestController
@@ -29,11 +31,10 @@ public class MusicTrackController {
     public String name;
     @Value("${track.comment}")
     public String comment;
+
     MusicTrackService musicTrackService;
-
-
     @Autowired
-    public MusicTrackController(@Qualifier("musicTrackServiceImpl") MusicTrackService musicTrackService) //Qualifier will create object of given ....
+    public MusicTrackController(MusicTrackService musicTrackService)
     {
         this.musicTrackService = musicTrackService;
     }
