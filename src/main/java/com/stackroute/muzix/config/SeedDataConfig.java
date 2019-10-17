@@ -3,17 +3,19 @@ package com.stackroute.muzix.config;
 import com.stackroute.muzix.model.Track;
 import com.stackroute.muzix.repository.TrackRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.context.event.EventListener;
+import org.springframework.stereotype.Component;
 
-@Configuration
-public class SeedDataConfig {
+
+@Component
+public class SeedDataConfig implements ApplicationListener<ContextRefreshedEvent> {
 @Autowired
     private TrackRepo trackRepo;
 
-   @EventListener
-    public void seed(ContextRefreshedEvent event) {
+    @Override
+    public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         trackRepo.save(new Track(1,"one","commentOne"));
         trackRepo.save(new Track(2,"two","ksdksmdfdsf"));
         trackRepo.save(new Track(3,"three","m sdm fms"));
@@ -21,5 +23,4 @@ public class SeedDataConfig {
         trackRepo.save(new Track(5,"two"," xmcxmc "));
 
     }
-
 }
