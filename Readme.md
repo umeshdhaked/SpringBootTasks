@@ -1,4 +1,4 @@
-** For task 11 we have to set profilename to IDE to run the project
+** For task 11 we have to set profilename to IDE to run the project or we can add a line in properties spring.profiles.active= profilename
 
 Tasks to be Done Post Demo
 1. Complete all the endpoints for CRUD operations on Muzix
