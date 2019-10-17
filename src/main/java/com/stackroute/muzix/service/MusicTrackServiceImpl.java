@@ -5,6 +5,7 @@ import com.stackroute.muzix.exception.TrackNotFoundException;
 import com.stackroute.muzix.model.Track;
 import com.stackroute.muzix.repository.TrackRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ControllerAdvice;

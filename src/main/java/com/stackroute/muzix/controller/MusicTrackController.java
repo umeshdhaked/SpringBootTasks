@@ -8,6 +8,7 @@ import com.stackroute.muzix.service.MusicTrackService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
@@ -15,37 +16,38 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @ControllerAdvice
 @RestController
 @RequestMapping("tracks")
 @Api("Track CRUD Operation API")
 @PropertySource("classpath:data.properties")
 public class MusicTrackController {
-    MusicTrackService musicTrackService;
-
     @Value("${track.id}")
     public int id;
-
     @Value("${track.name}")
     public String name;
-
     @Value("${track.comment}")
     public String comment;
-
-
+    MusicTrackService musicTrackService;
 
 
     @Autowired
-    public MusicTrackController(MusicTrackService musicTrackService) {
+    public MusicTrackController(@Qualifier("musicTrackServiceImpl") MusicTrackService musicTrackService) //Qualifier will create object of given ....
+    {
         this.musicTrackService = musicTrackService;
     }
+
+
     @ApiOperation(value = "Saving Track Detail")
     @PostMapping("track")
     public ResponseEntity<?> saveTrack(@RequestBody Track track) throws TrackAlreadyExistsException {
 
+        System.out.println(id+""+name+""+comment);
+
         ResponseEntity responseEntity;
-            musicTrackService.saveTrack(track);
-            responseEntity = new ResponseEntity<String>("Successful Created", HttpStatus.OK);
+        musicTrackService.saveTrack(track);
+        responseEntity = new ResponseEntity<String>("Successful Created", HttpStatus.OK);
         //response.sendRedirect("/index.html");
         return responseEntity;
     }
@@ -54,7 +56,7 @@ public class MusicTrackController {
     @GetMapping("track")
     private ResponseEntity<?> displayAllTrack() throws TrackNotFoundException {
 
-            return new ResponseEntity<List<Track>>(musicTrackService.getAllTrack(), HttpStatus.OK);
+        return new ResponseEntity<List<Track>>(musicTrackService.getAllTrack(), HttpStatus.OK);
 
     }
 
@@ -63,7 +65,7 @@ public class MusicTrackController {
     private ResponseEntity<?> deleteTrack(@RequestBody Track track) throws TrackNotFoundException {
         ResponseEntity responseEntity;
 
-            responseEntity = new ResponseEntity<String>(musicTrackService.removeTrack(track.getTrackId()) + "Is deleted", HttpStatus.OK);
+        responseEntity = new ResponseEntity<String>(musicTrackService.removeTrack(track.getTrackId()) + "Is deleted", HttpStatus.OK);
         return responseEntity;
     }
 
@@ -72,8 +74,8 @@ public class MusicTrackController {
     private ResponseEntity<?> updateTrackComment(@RequestBody Track track) throws TrackNotFoundException {
         ResponseEntity responseEntity;
 
-            musicTrackService.updateTrackComment(track);
-            responseEntity = new ResponseEntity<List<Track>>(musicTrackService.getAllTrack(), HttpStatus.OK);
+        musicTrackService.updateTrackComment(track);
+        responseEntity = new ResponseEntity<List<Track>>(musicTrackService.getAllTrack(), HttpStatus.OK);
         return responseEntity;
     }
 
@@ -82,9 +84,9 @@ public class MusicTrackController {
     private ResponseEntity<?> trackByName(@RequestBody Track track) throws TrackNotFoundException {
         ResponseEntity responseEntity;
 
-            responseEntity = new ResponseEntity<List<Track>>(musicTrackService.trackByName(track.getTrackName()), HttpStatus.OK);
+        responseEntity = new ResponseEntity<List<Track>>(musicTrackService.trackByName(track.getTrackName()), HttpStatus.OK);
 
-      return responseEntity;
+        return responseEntity;
     }
 
 
