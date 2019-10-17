@@ -6,10 +6,12 @@ import com.stackroute.muzix.model.Track;
 import com.stackroute.muzix.repository.TrackRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
-@Repository
+@Service
 public class MusicTrackServiceImpl implements MusicTrackService {
 
     TrackRepo trackRepo;

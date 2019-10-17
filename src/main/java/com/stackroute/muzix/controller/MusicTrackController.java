@@ -2,6 +2,8 @@ package com.stackroute.muzix.controller;
 
 import com.stackroute.muzix.model.Track;
 import com.stackroute.muzix.service.MusicTrackService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("tracks")
+@Api("Track CRUD Operation API")
 public class MusicTrackController {
     MusicTrackService musicTrackService;
 
@@ -20,6 +23,7 @@ public class MusicTrackController {
         this.musicTrackService = musicTrackService;
     }
 
+    @ApiOperation(value = "Saving Track Detail")
     @PostMapping("track")
     public ResponseEntity<?> saveTrack(@RequestBody Track track) {
         ResponseEntity responseEntity;
@@ -34,6 +38,7 @@ public class MusicTrackController {
         return responseEntity;
     }
 
+    @ApiOperation(value = "Reading Tracks Detail")
     @GetMapping("track")
     private ResponseEntity<?> displayAllTrack() {
         try {
@@ -44,6 +49,7 @@ public class MusicTrackController {
 
     }
 
+    @ApiOperation(value = "Deleting Track")
     @DeleteMapping("track")
     private ResponseEntity<?> deleteTrack(@RequestBody Track track) {
         ResponseEntity responseEntity;
@@ -55,8 +61,9 @@ public class MusicTrackController {
         return responseEntity;
     }
 
+    @ApiOperation(value = "Updating Track Comment")
     @PutMapping("track")
-    private ResponseEntity<?> updateTrack(@RequestBody Track track) {
+    private ResponseEntity<?> updateTrackComment(@RequestBody Track track) {
         ResponseEntity responseEntity;
         try {
             musicTrackService.updateTrackComment(track);
@@ -67,7 +74,8 @@ public class MusicTrackController {
         return responseEntity;
     }
 
-    @RequestMapping("byName")
+    @ApiOperation(value = "Finding Track Detail by Name")
+    @GetMapping("byName")
     private ResponseEntity<?> trackByName(@RequestBody Track track) {
         ResponseEntity responseEntity;
         try {
