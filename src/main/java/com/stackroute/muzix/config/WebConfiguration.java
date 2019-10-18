@@ -8,11 +8,11 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class WebConfiguration {
-    @Bean
-    ServletRegistrationBean h2servletRegistrationBean() {
-        ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(new WebServlet());
-        servletRegistrationBean.addUrlMappings("/console/*");
-        return servletRegistrationBean;
-    }
+//    @Bean
+//    ServletRegistrationBean h2servletRegistrationBean() {
+//        ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(new WebServlet());
+//        servletRegistrationBean.addUrlMappings("/console/*");
+//        return servletRegistrationBean;
+//    }
 
 }
